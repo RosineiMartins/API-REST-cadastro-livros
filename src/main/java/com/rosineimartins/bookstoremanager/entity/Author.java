@@ -1,9 +1,7 @@
 package com.rosineimartins.bookstoremanager.entity;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,22 +13,11 @@ import lombok.NoArgsConstructor;
 @Entity            //indica que é uma entidade
 public class Author {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (nullable = false, unique = true )        //não permite a tabela como nula, unique/ nome unico
+    @Column(nullable = false, unique = true)        //não permite a tabela como nula, unique/ nome unico
     private String name;
     @Column(nullable = false)
-    private Integer chapter;
-
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Integer age;
 }

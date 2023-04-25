@@ -1,8 +1,8 @@
 package com.rosineimartins.bookstoremanager.controller;
 
 
+import com.rosineimartins.bookstoremanager.dto.BookDTO;
 import com.rosineimartins.bookstoremanager.dto.messageResponseDto;
-import com.rosineimartins.bookstoremanager.entity.Book;
 import com.rosineimartins.bookstoremanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +19,8 @@ public class BookController {
 
 
     @PostMapping
-    public messageResponseDto create(@RequestBody Book book) {
-        return bookService.create(book);
+    public messageResponseDto create(@RequestBody BookDTO bookDto) {
+        return bookService.create(bookDto);
 
     }
 }

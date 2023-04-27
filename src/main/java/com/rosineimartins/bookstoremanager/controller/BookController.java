@@ -5,10 +5,7 @@ import com.rosineimartins.bookstoremanager.dto.BookDTO;
 import com.rosineimartins.bookstoremanager.dto.messageResponseDto;
 import com.rosineimartins.bookstoremanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -21,6 +18,9 @@ public class BookController {
     @PostMapping
     public messageResponseDto create(@RequestBody BookDTO bookDto) {
         return bookService.create(bookDto);
-
+    }
+    @GetMapping("/{id}")
+    public BookDTO findById(@PathVariable Long id) {
+        return bookService.findById(id);
     }
 }

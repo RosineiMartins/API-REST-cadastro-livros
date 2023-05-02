@@ -4,6 +4,7 @@ package com.rosineimartins.bookstoremanager.service;
 import com.rosineimartins.bookstoremanager.dto.BookDTO;
 import com.rosineimartins.bookstoremanager.dto.messageResponseDto;
 import com.rosineimartins.bookstoremanager.entity.Book;
+import com.rosineimartins.bookstoremanager.exception.BookNotFoundException;
 import com.rosineimartins.bookstoremanager.mapper.BookMapper;
 import com.rosineimartins.bookstoremanager.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,10 @@ public class BookService {
         return messageResponseDto.builder()
                 .messageDto("Book created whith id " + savedBook.getId())
                 .build();
-
     }
-
-    public BookDTO findById(Long id) {
-        Optional<Book>optionalBook = bookRepository.findById(id);
-      return bookMapper.toDTO(optionalBook.get());
-
+    public BookDTO findById(Long id) throws BookNotFoundException {
+       Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+      return bookMapper.toDTO(book);
     }
 
 }
